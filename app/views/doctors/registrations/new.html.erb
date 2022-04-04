@@ -1,0 +1,55 @@
+<div class="container text-center">
+  <div class="home">
+    <h2>Cadastro</h2>
+
+    <%= form_with model: @user, url: user_registration_path, method: :patch, class: 'registration-main', local: true do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+        <%= f.label :'Nome completo' %><br />
+        <%= f.text_field :name, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :'CRM', class: "uppercase" %>
+        <em>(apenas números)</em><br/>
+        <%= f.text_field :crm, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :'Especialidade' %><br/>
+        <%= f.text_field :expertise, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :"CPF", class: "uppercase" %>
+        <em>(apenas números)</em><br/>
+        <%= f.text_field :document, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :'E-mail' %><br/>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :Senha %>
+        <% if @minimum_password_length %>
+        <em>(<%= @minimum_password_length %> caracteres no mínimo)</em>
+        <% end %><br/>
+        <%= f.password_field :password, autocomplete: "new-password" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :'Confirme a senha' %><br/>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+
+      <%= f.hidden_field :role, :value => :doctor %>
+
+      <div class="actions mt-3">
+        <%= f.submit "Cadastrar", class: "btn btn-purple" %>
+      </div>
+    </div>
+  </div>
+<% end %>

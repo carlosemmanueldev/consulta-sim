@@ -1,0 +1,68 @@
+<div class="container text-center">
+  <div class="home">
+
+    <h2>Atualizar Perfil</h2
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+
+      <div class="field">
+        <%= f.label :'Nome completo' %><br />
+        <%= f.text_field :name, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :'CRM', class: "uppercase" %><br />
+        <%= f.text_field :crm, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :'Especialidade' %><br/>
+        <%= f.text_field :expertise, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :"CPF", class: "uppercase" %><br/>
+        <%= f.text_field :document, autofocus: true %>
+      </div>
+
+      <div class="field">
+        <%= f.label :"E-mail" %><br />
+        <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+      </div>
+
+      <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+        <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+      <% end %>
+
+      <div class="field">
+        <%= f.label :"Senha" %> <i>(deixe em branco se não quiser mudar)</i><br />
+        <%= f.password_field :password, autocomplete: "new-password" %>
+        <% if @minimum_password_length %>
+          <br />
+          <em><%= @minimum_password_length %> caracteres no mínimo</em>
+        <% end %>
+      </div>
+
+      <div class="field">
+        <%= f.label :"Confirme a senha" %><br />
+        <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+      </div>
+
+      <div class="field">
+        <%= f.label :"Senha atual" %> <i>(precisamos da senha atual para confirmar as mudanças)</i><br />
+        <%= f.password_field :current_password, autocomplete: "current-password" %>
+      </div>
+
+      <div class="actions mt-3">
+        <%= f.submit "Atualizar", class: "btn btn-purple"  %>
+      </div>
+    <% end %>
+
+
+    <h3 class="mt-5">Insatisfeito?</h3>
+    <%= button_to "Apagar Conta", registration_path(resource_name), data: { confirm: "Tem certeza que deseja apagar sua conta?" }, method: :delete, class: "btn btn-blue" %>
+
+    <%= link_to "Voltar", :back, class: "btn btn-blue mt-5" %>
+  </div>
+</div>
