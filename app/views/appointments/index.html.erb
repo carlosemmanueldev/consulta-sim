@@ -1,0 +1,37 @@
+<div class="container text-center">
+  <div class="home">
+    <h2>Consulta Marcadas</h2>
+
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">#</th>
+          <% if patient_signed_in? %>
+            <th scope="col">Especialidade</th>
+          <% end %>
+          <th scope="col"><%= doctor_signed_in? ? 'Paciente' : 'Médico' %></th>
+          <th scope="col">Data</th>
+          <th scope="col">Hora</th>
+        </tr>
+      </thead>
+      <tbody>
+      <% @count = 0 %>
+      <% @appointments.each do |appointment| %>
+
+        <tr>
+          <th scope="row"><%= @count += 1%></th>
+          <% if patient_signed_in? %>
+            <td> <%= appointment.doctor.expertise %></td>
+          <% end %>
+          <td> <%= doctor_signed_in? ? appointment.patient.name : appointment.doctor.name %> </td>
+          <td> <%= appointment.date.to_formatted_s(:rfc822) %> </td>
+          <td> <%= appointment.hour.to_formatted_s(:time) %> </td>
+        </tr>
+      <% end %>
+
+      </tbody>
+    </table>
+
+    <%= link_to "Voltar", :back, class: "btn btn-blue mt-5" %>
+  </div>
+</div>

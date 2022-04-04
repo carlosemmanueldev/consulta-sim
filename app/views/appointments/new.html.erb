@@ -1,0 +1,29 @@
+<div class="container text-center">
+  <div class="home">
+    <h2>Marcar Consulta</h2>
+
+    <%= form_with model: @appointment do |f| %>
+
+      <div class="field">
+        <%= f.label :'Médico' %><br />
+        <%= collection_select(:appointment, :doctor_id, Doctor.where(role: 'doctor').all, :id, :doctor_name_expertise, {:prompt => 'Selecione'} ) %>
+      </div>
+
+      <div class="field mt-2">
+        <%= f.label :'Data da consulta' %><br />
+        <%= f.date_field :date%>
+      </div>
+
+      <div class="field mt-2">
+        <%= f.label :'Hora da consulta' %><br />
+        <%= f.time_field :hour %>
+      </div>
+
+      <%= f.hidden_field :patient_id, :value => current_user.id %>
+
+      <%= f.submit 'Marcar', class: "btn btn-purple mt-3" %>
+    <% end %>
+
+    <%= link_to "Voltar", :back, class: "btn btn-blue mt-5" %>
+  </div>
+</div>
