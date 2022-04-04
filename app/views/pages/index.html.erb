@@ -1,0 +1,13 @@
+<div class="container text-center">
+  <div class="home">
+    <p class="mt-3">Olá, <%= current_user.name %>!</p>
+
+    <% if patient_signed_in? %>
+      <%= link_to 'Marcar Consulta', new_appointment_path, class: "btn btn-purple m-2" %>
+    <% end %>
+    <%= link_to 'Consultas', appointments_path, class: "btn btn-purple m-2" %> <br>
+    <%= link_to 'Editar perfil', doctor_signed_in? ? edit_doctor_registration_path : edit_patient_registration_path, class: "btn btn-blue m-2" %>
+    <%= button_to 'Sair', destroy_user_session_path, method: :delete, class: "btn btn-blue m-2" %>
+
+  </div>
+</div>
